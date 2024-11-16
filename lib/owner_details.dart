@@ -19,7 +19,8 @@ class OwnerDetails extends StatefulWidget {
   int downloads;
 
   OwnerDetails(
-      {required this.img,
+      {super.key,
+      required this.img,
       required this.userImg,
       required this.name,
       required this.date,
@@ -48,19 +49,19 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                   child: Column(
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(left: 20, top: 20),
+                        padding: const EdgeInsets.only(left: 20, top: 20),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             IconButton(
-                              icon: Icon(Icons.arrow_back),
+                              icon: const Icon(Icons.arrow_back),
                               iconSize: 22,
                               tooltip: 'Home',
                               onPressed: () {
                                 Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (_) => HomeScreen()));
+                                        builder: (_) => const HomeScreen()));
                               },
                             )
                           ],
@@ -75,18 +76,18 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
-                Text(
-                  'Dados do Usuario',
+                const Text(
+                  'User Data',
                   style: TextStyle(
                     fontSize: 30,
                     color: Colors.white54,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 Container(
@@ -100,40 +101,40 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
-                  'Postado por:' + widget.name,
-                  style: TextStyle(
+                  'Posted by:${widget.name}',
+                  style: const TextStyle(
                       fontSize: 10,
                       color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
                   DateFormat('dd MMMM yyyy - hh:mm a')
                       .format(widget.date)
                       .toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.download_outlined,
                       size: 40,
                       color: Colors.white,
                     ),
                     Text(
-                      ' ' + widget.downloads.toString(),
-                      style: TextStyle(
+                      ' ${widget.downloads}',
+                      style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -141,7 +142,7 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Padding(
@@ -157,7 +158,7 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                         if (imageId == null) {
                           return;
                         }
-                        Fluttertoast.showToast(msg: 'Imagem salva na Galeria');
+                        Fluttertoast.showToast(msg: 'Image saved in Gallery');
                         total = widget.downloads + 1;
 
                         FirebaseFirestore.instance
@@ -168,7 +169,8 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                         }).then((value) {
                           Navigator.pushReplacement(
                             context,
-                            MaterialPageRoute(builder: (_) => HomeScreen()),
+                            MaterialPageRoute(
+                                builder: (_) => const HomeScreen()),
                           );
                         });
                       } on PlatformException catch (error) {
@@ -181,7 +183,7 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                     ? Padding(
                         padding: const EdgeInsets.only(left: 8, right: 8),
                         child: RectangularButton(
-                          text: 'Deletar',
+                          text: 'Delete',
                           colors1: Colors.green,
                           colors2: Colors.lightGreen,
                           press: () async {
@@ -193,7 +195,7 @@ class _OwnerDetailsState extends State<OwnerDetails> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (_) => HomeScreen(),
+                                  builder: (_) => const HomeScreen(),
                                 ),
                               );
                             });

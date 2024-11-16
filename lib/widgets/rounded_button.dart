@@ -14,10 +14,10 @@ class RoundedButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 30.0, bottom: 30.0 / 2),
         child: Container(
-          padding: EdgeInsets.all(30.0 / 2),
+          padding: const EdgeInsets.all(30.0 / 2),
           width: 65,
           height: 65,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
                   begin: Alignment.centerLeft,

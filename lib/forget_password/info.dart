@@ -9,13 +9,15 @@ import 'package:pinterest_clone/widgets/rectangular_input_field.dart';
 class Credentials extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  late TextEditingController _emailTextController =
+  late final TextEditingController _emailTextController =
       TextEditingController(text: '');
+
+  Credentials({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -26,7 +28,7 @@ class Credentials extends StatelessWidget {
               width: 200,
             ),
           )),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           RectangularInputField(
@@ -35,7 +37,7 @@ class Credentials extends StatelessWidget {
             obscureText: false,
             textEditingController: _emailTextController,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30.0 / 2,
           ),
           RectangularButton(
@@ -46,8 +48,8 @@ class Credentials extends StatelessWidget {
                   email: _emailTextController.text,
                 );
 
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (_) => LoginScreen()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (_) => const LoginScreen()));
               } catch (error) {
                 Fluttertoast.showToast(msg: error.toString());
               }
@@ -61,7 +63,7 @@ class Credentials extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => LoginScreen(),
+                  builder: (_) => const LoginScreen(),
                 ),
               );
             },

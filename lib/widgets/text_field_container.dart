@@ -9,9 +9,9 @@ class TextFieldContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: EdgeInsets.symmetric(vertical: 30.0 / 2),
+      margin: const EdgeInsets.symmetric(vertical: 30.0 / 2),
       decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
               colors: [
@@ -19,7 +19,7 @@ class TextFieldContainer extends StatelessWidget {
                 Colors.red,
               ]),
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               offset: Offset(-2, -2),
               spreadRadius: 1,

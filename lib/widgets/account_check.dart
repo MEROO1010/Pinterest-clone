@@ -14,20 +14,20 @@ class AccountCheck extends StatelessWidget {
       children: [
         Text(
           login ? 'Não possui Conta ? ' : 'Ja Possui uma Conta ? ',
-          style: TextStyle(fontSize: 16, color: Colors.white),
+          style: const TextStyle(fontSize: 16, color: Colors.white),
         ),
         GestureDetector(
           onTap: press,
           child: Text(
             login ? ' Criar uma Conta' : ' Entrar',
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,
               color: Colors.blue,
             ),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 50,
         )
       ],

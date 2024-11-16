@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
               home: Scaffold(
                 body: Center(
                   child: Center(
-                    child: Text('Bem Vindo '),
+                    child: Text('Welcome '),
                   ),
                 ),
               ),
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
               home: Scaffold(
                 body: Center(
                   child: Center(
-                    child: Text('Erro , Aguardando'),
+                    child: Text('Error , Waiting'),
                   ),
                 ),
               ),
@@ -52,28 +52,3 @@ class MyApp extends StatelessWidget {
         });
   }
 }
-
-
-
-///   if request.auth != null;
-
-
-// void main() {
-//   runApp(MyApp());
-// }
-
-// class MyApp extends StatelessWidget {
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo',
-//       theme: ThemeData(
-    
-//         // is not restarted.
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: MyHomePage(title: 'Flutter Demo Home Page'),
-//     );
-//   }
-// }

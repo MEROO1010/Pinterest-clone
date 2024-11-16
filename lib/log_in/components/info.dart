@@ -11,26 +11,28 @@ import 'package:pinterest_clone/widgets/rectangular_input_field.dart';
 class Credentials extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  late TextEditingController _emailTextController =
+  late final TextEditingController _emailTextController =
       TextEditingController(text: '');
 
-  late TextEditingController _passTextController =
+  late final TextEditingController _passTextController =
       TextEditingController(text: '');
+
+  Credentials({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
+          const Center(
             child: CircleAvatar(
               radius: 60,
               backgroundImage: AssetImage('assets/p1.png'),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           RectangularInputField(
@@ -39,7 +41,7 @@ class Credentials extends StatelessWidget {
             obscureText: false,
             textEditingController: _emailTextController,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30.0 / 2,
           ),
           RectangularInputField(
@@ -48,7 +50,7 @@ class Credentials extends StatelessWidget {
             obscureText: true,
             textEditingController: _passTextController,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30.0 / 2,
           ),
           Row(
@@ -59,9 +61,9 @@ class Credentials extends StatelessWidget {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => ForgetPasswordScreen()));
+                          builder: (_) => const ForgetPasswordScreen()));
                 },
-                child: Text(
+                child: const Text(
                   'Esqueceu a Senha ?',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
@@ -72,7 +74,7 @@ class Credentials extends StatelessWidget {
               )
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           RectangularButton(
@@ -82,8 +84,8 @@ class Credentials extends StatelessWidget {
                 await _auth.signInWithEmailAndPassword(
                     email: _emailTextController.text.trim().toLowerCase(),
                     password: _passTextController.text.trim());
-                Navigator.pushReplacement(
-                    context, MaterialPageRoute(builder: (_) => HomeScreen()));
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (_) => const HomeScreen()));
               } catch (error) {
                 Fluttertoast.showToast(msg: error.toString());
               }
@@ -97,7 +99,7 @@ class Credentials extends StatelessWidget {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => SignUpScreen(),
+                  builder: (_) => const SignUpScreen(),
                 ),
               );
             },

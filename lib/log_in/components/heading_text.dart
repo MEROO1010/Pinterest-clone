@@ -8,14 +8,14 @@ class HeadText extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0 / 2),
+      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0 / 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: size.height * 0.05,
           ),
-          Text(
+          const Text(
             'Seja Bem Vindo',
             style: TextStyle(
               fontSize: 15,
@@ -23,10 +23,10 @@ class HeadText extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
-          Text(
+          const Text(
             'Entrar',
             style: TextStyle(
                 fontSize: 36,

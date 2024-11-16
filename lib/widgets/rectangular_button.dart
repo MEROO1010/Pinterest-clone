@@ -19,20 +19,20 @@ class RectangularButton extends StatelessWidget {
     return GestureDetector(
       onTap: press,
       child: Padding(
-        padding: EdgeInsets.only(top: 6.0, bottom: 6.0),
+        padding: const EdgeInsets.only(top: 6.0, bottom: 6.0),
         child: Container(
           width: double.infinity,
           height: 65,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                   begin: Alignment.centerLeft,
                   end: Alignment.centerRight,
                   colors: [
                     Colors.redAccent,
                     Colors.red,
                   ]),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   offset: Offset(3, 3),
                   spreadRadius: 1,
@@ -49,7 +49,7 @@ class RectangularButton extends StatelessWidget {
           child: Center(
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 20,
                 color: Colors.white,
                 fontWeight: FontWeight.w800,

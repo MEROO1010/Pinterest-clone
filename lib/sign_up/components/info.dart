@@ -14,6 +14,8 @@ import 'package:pinterest_clone/widgets/rectangular_button.dart';
 import 'package:pinterest_clone/widgets/rectangular_input_field.dart';
 
 class Credentials extends StatefulWidget {
+  const Credentials({super.key});
+
   @override
   _CredentialsState createState() => _CredentialsState();
 }
@@ -21,13 +23,13 @@ class Credentials extends StatefulWidget {
 class _CredentialsState extends State<Credentials> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   //
-  late TextEditingController _fullNameController =
+  late final TextEditingController _fullNameController =
       TextEditingController(text: '');
 
-  late TextEditingController _emailTextController =
+  late final TextEditingController _emailTextController =
       TextEditingController(text: '');
 
-  late TextEditingController _passTextController =
+  late final TextEditingController _passTextController =
       TextEditingController(text: '');
 
   File? imageFile;
@@ -39,13 +41,13 @@ class _CredentialsState extends State<Credentials> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Escolha uma Opção'),
+            title: const Text('Choose an Option'),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 InkWell(
                   onTap: () {},
-                  child: Row(
+                  child: const Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(
@@ -63,12 +65,12 @@ class _CredentialsState extends State<Credentials> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {},
-                  child: Row(
+                  child: const Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(
@@ -80,7 +82,7 @@ class _CredentialsState extends State<Credentials> {
                         ),
                       ),
                       Text(
-                        'Galeria',
+                        'Gallery',
                         style: TextStyle(color: Colors.red),
                       )
                     ],
@@ -95,7 +97,7 @@ class _CredentialsState extends State<Credentials> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -108,58 +110,58 @@ class _CredentialsState extends State<Credentials> {
                 backgroundColor: Colors.white,
                 radius: 60,
                 backgroundImage: imageFile == null
-                    ? AssetImage('assets/p2.png')
+                    ? const AssetImage('assets/p2.png')
                     : Image.file(imageFile!).image,
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           RectangularInputField(
-            hintText: 'Digite seu Nome',
+            hintText: 'Enter your Name',
             incon: Icons.person,
             obscureText: false,
             textEditingController: _fullNameController,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0 / 2,
           ),
           RectangularInputField(
-            hintText: 'Digite seu Email',
+            hintText: 'Enter your Email',
             incon: Icons.email_rounded,
             obscureText: false,
             textEditingController: _emailTextController,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0 / 2,
           ),
           RectangularInputField(
-            hintText: 'Digite a Senha',
+            hintText: 'Enter Password',
             incon: Icons.lock,
             obscureText: true,
             textEditingController: _passTextController,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0 / 2,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           RectangularButton(
-            text: 'Criar Conta',
+            text: 'Create Account',
             colors1: Colors.red,
             colors2: Colors.redAccent,
             press: () async {
               if (imageFile == null) {
-                Fluttertoast.showToast(msg: 'Por favor Selecione uma Imagem');
+                Fluttertoast.showToast(msg: 'Please Select an Image');
                 return;
               }
               try {
                 final ref = FirebaseStorage.instance
                     .ref()
                     .child('userImages')
-                    .child(DateTime.now().toString() + '.jpg');
+                    .child('${DateTime.now()}.jpg');
                 await ref.putFile(imageFile!);
                 imageUrl = await ref.getDownloadURL();
                 await _auth.createUserWithEmailAndPassword(
@@ -167,9 +169,9 @@ class _CredentialsState extends State<Credentials> {
                   password: _passTextController.text.trim(),
                 );
                 final User? user = _auth.currentUser;
-                final _uid = user!.uid;
-                FirebaseFirestore.instance.collection('users').doc(_uid).set({
-                  'id': _uid,
+                final uid = user!.uid;
+                FirebaseFirestore.instance.collection('users').doc(uid).set({
+                  'id': uid,
                   'userImage': imageUrl,
                   'name': _fullNameController.text,
                   'email': _emailTextController.text,
@@ -182,7 +184,7 @@ class _CredentialsState extends State<Credentials> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => HomeScreen(),
+                  builder: (_) => const HomeScreen(),
                 ),
               );
             },
@@ -193,7 +195,7 @@ class _CredentialsState extends State<Credentials> {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (_) => LoginScreen(),
+                  builder: (_) => const LoginScreen(),
                 ),
               );
             },

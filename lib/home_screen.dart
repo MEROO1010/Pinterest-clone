@@ -5,8 +5,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_cropper/image_cropper.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:pinterest_clone/log_in/login_screen.dart';
 import 'package:pinterest_clone/owner_details.dart';
@@ -19,7 +17,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String changeTitle = 'Galeria';
+  String changeTitle = 'Gallery';
   bool chekView = false;
   File? imageFile;
   String? imageUrl;
@@ -49,14 +47,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void _upload_images() async {
     if (imageFile == null) {
-      Fluttertoast.showToast(msg: 'Selecione uma Imagem');
+      Fluttertoast.showToast(msg: 'Select an Image');
       return;
     }
     try {
       final ref = FirebaseStorage.instance
           .ref()
           .child('userImages')
-          .child(DateTime.now().toString() + 'jpg');
+          .child('${DateTime.now()}jpg');
       await ref.putFile(imageFile!);
       imageUrl = await ref.getDownloadURL();
       FirebaseFirestore.instance
@@ -83,11 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text('Escolha uma Opção'),
+            title: const Text('Choose an Option'),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                InkWell(
+                const InkWell(
                   child: Row(
                     children: [
                       Padding(
@@ -106,12 +104,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {},
-                  child: Row(
+                  child: const Row(
                     children: [
                       Padding(
                         padding: EdgeInsets.all(
@@ -123,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       Text(
-                        'Galeria',
+                        'Gallery',
                         style: TextStyle(color: Colors.red),
                       )
                     ],
@@ -138,13 +136,13 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget listViewWidget(String docId, String img, String userImg, String name,
       DateTime date, String userId, int downloads) {
     return Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8.0),
       child: Card(
         color: Colors.red,
         elevation: 16.0,
         shadowColor: Colors.white10,
         child: Container(
-          padding: EdgeInsets.all(5.0),
+          padding: const EdgeInsets.all(5.0),
           child: Column(
             children: [
               GestureDetector(
@@ -167,18 +165,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Padding(
-                padding: EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
+                padding:
+                    const EdgeInsets.only(left: 8.0, right: 8.0, bottom: 8.0),
                 child: Row(
                   children: [
                     CircleAvatar(
                       radius: 35,
                       backgroundImage: NetworkImage(userImg),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Column(
@@ -186,19 +185,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text(
                           name,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           DateFormat('dd MMMM yyyy - hh:mm a')
                               .format(date)
                               .toString(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.white54,
                               fontWeight: FontWeight.bold),
                         )
@@ -218,12 +217,13 @@ class _HomeScreenState extends State<HomeScreen> {
       DateTime date, String userId, int downloads) {
     return GridView.count(
       primary: false,
-      padding: EdgeInsets.all(6),
+      padding: const EdgeInsets.all(6),
       crossAxisSpacing: 1,
       crossAxisCount: 1,
       children: [
         Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
+          color: Colors.red,
           child: GestureDetector(
             onTap: () {
               Navigator.pushReplacement(
@@ -246,7 +246,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          color: Colors.red,
         )
       ],
     );
@@ -261,13 +260,13 @@ class _HomeScreenState extends State<HomeScreen> {
         title: GestureDetector(
           onTap: () {
             setState(() {
-              changeTitle = 'Imagens';
+              changeTitle = 'Images';
               chekView = true;
             });
           },
           onDoubleTap: () {
             setState(() {
-              changeTitle = 'Galeria';
+              changeTitle = 'Gallery';
               chekView = false;
             });
           },
@@ -277,10 +276,10 @@ class _HomeScreenState extends State<HomeScreen> {
         leading: GestureDetector(
           onTap: () {
             FirebaseAuth.instance.signOut();
-            Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (_) => LoginScreen()));
+            Navigator.pushReplacement(context,
+                MaterialPageRoute(builder: (_) => const LoginScreen()));
           },
-          child: Icon(Icons.logout),
+          child: const Icon(Icons.logout),
         ),
         actions: [
           IconButton(
@@ -289,7 +288,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 _upload_images();
               }
             },
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           )
         ],
       ),
@@ -298,7 +297,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {
           _showImageDialog();
         },
-        child: Icon(Icons.camera_enhance),
+        child: const Icon(Icons.camera_enhance),
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -307,7 +306,7 @@ class _HomeScreenState extends State<HomeScreen> {
             .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else if (snapshot.connectionState == ConnectionState.active) {
@@ -329,8 +328,9 @@ class _HomeScreenState extends State<HomeScreen> {
               } else {
                 return GridView.builder(
                     itemCount: snapshot.data!.docs.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3),
                     itemBuilder: (BuildContext context, int index) {
                       return gridViewWidget(
                         snapshot.data!.docs[index].id,
@@ -344,14 +344,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     });
               }
             } else {
-              return Center(
-                child: Text('Sem Imagens'),
+              return const Center(
+                child: Text('No Images'),
               );
             }
           }
-          return Center(
+          return const Center(
             child: Text(
-              'Algo deu Errado',
+              'Something went wrong',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 30,
